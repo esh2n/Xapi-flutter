@@ -10,7 +10,7 @@
 
 - [ ] authorize qiita api
 - [ ] implement other api
-- [ ] create provider sample
-- [ ] create riverpod sample
+- [x] create provider sample
+- [x] create riverpod sample
 - [ ] create get sample
 - [ ] make it compatible with DDD

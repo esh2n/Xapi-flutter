@@ -21,15 +21,3 @@ class ArticleScreenModel extends ChangeNotifier {
     }
   }
 }
-
-// class ArticleScreenModel extends ChangeNotifier {
-//   final api = QiitaApiClient.create();
-//   List<QiitaInfo> _articles = [];
-
-//   List<QiitaInfo> get articles => _articles;
-
-//   Future<void> getFlutterArticle() async {
-//     _articles = await api.getFlutterArticles();
-//     notifyListeners();
-//   }
-// }

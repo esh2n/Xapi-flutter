@@ -12,5 +12,5 @@
 - [ ] implement other api
 - [x] create provider sample
 - [x] create riverpod sample
-- [ ] create get sample
+- [x] create get sample
 - [ ] make it compatible with DDD

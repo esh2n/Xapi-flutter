@@ -1,4 +1,5 @@
 import 'package:api_sample/api/qiita/model/qiita_info.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ArticleItem extends StatelessWidget {
@@ -18,9 +19,7 @@ class ArticleItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: InkWell(
-        onTap: () => onArticleClicked(
-          qiitaInfo,
-        ),
+        onTap: () => onArticleClicked(qiitaInfo),
         child: SizedBox(
           height: 75,
           child: Row(
@@ -29,12 +28,19 @@ class ArticleItem extends StatelessWidget {
                 flex: 1,
                 child: Padding(
                   padding: const EdgeInsets.all(4),
-                  child: Image.network(
-                    qiitaInfo.qiitaUser!.profileImageUrl ?? '',
-                    errorBuilder: (BuildContext context, Object exception,
-                        StackTrace? stackTrace) {
-                      return Center(child: const Text(''));
-                    },
+                  child: CachedNetworkImage(
+                    imageUrl: qiitaInfo.qiitaUser!.profileImageUrl ?? '',
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
               ),

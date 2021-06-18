@@ -3,6 +3,7 @@ import 'package:api_sample/api/qiita/qiita_client.dart';
 import 'package:get/get.dart';
 
 class ArticleScreenModel extends GetxController {
+  //TODO: DI
   final api = QiitaApiClient.create();
   List<QiitaInfo> _articles = [];
 

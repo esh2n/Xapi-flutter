@@ -1,13 +1,16 @@
 import 'package:api_sample/api/qiita/model/qiita_info.dart';
-import 'package:api_sample/view/article_detail/article_detail_screen.dart';
 import 'article_screen_model.dart';
 import 'article_item.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class ArticleScreen extends StatelessWidget {
+  final model = Get.put(ArticleScreenModel());
   @override
   Widget build(BuildContext context) {
+    Future(
+      () async => await model.getFlutterArticle(),
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -23,10 +26,7 @@ class ArticleScreen extends StatelessWidget {
 class _List extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final model = Get.put(ArticleScreenModel());
-    Future(
-      () async => await model.getFlutterArticle(),
-    );
+    final model = Get.find<ArticleScreenModel>();
     return GetBuilder<ArticleScreenModel>(
         init: ArticleScreenModel(),
         builder: (_) {
@@ -44,6 +44,9 @@ class _List extends StatelessWidget {
   }
 
   _openArticleWebPage(QiitaInfo qiitaInfo) {
-    Get.to(() => ArticleDetailScreen(qiitaInfo: qiitaInfo));
+    Get.toNamed(
+      '/article/details',
+      arguments: {'qiitaInfo': qiitaInfo},
+    );
   }
 }

@@ -1,11 +1,22 @@
-import 'package:api_sample/view/article/article_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() => runApp(GetMaterialApp(
-      title: 'API Sample',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+import 'router/app_router.dart';
+import 'router/middleware.dart';
+import 'view/home/home_page.dart';
+
+void main() => runApp(
+      GetMaterialApp(
+        title: 'API Sample',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: HomePage(),
+        onGenerateRoute: AppRouter().onGenerateRoute,
+        onUnknownRoute: AppRouter().initialRoute,
+        navigatorKey: Get.key,
+        navigatorObservers: [
+          GetObserver(MiddleWare().observer),
+        ],
       ),
-      home: ArticleScreen(),
-    ));
+    );
